@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Display extends JFrame {
+    private int depth = 5;
 
     // The constructor follows
     public Display() {
@@ -12,13 +13,14 @@ public class Display extends JFrame {
     }
 
     public void paint(Graphics g) {
+        g.clearRect(0, 0, getWidth(), getHeight());
+
         int x = getSize().width / 2 - 10;
         int y = getSize().height/ 2 - 10;
         int width = 20;
         int height = 20;
         int startAngle = 0;
         int arcAngle = 180;
-        int depth = 10;
 
         for (int i = 0; i < 10; i++) {
             if (i % 2 == 0) {
@@ -34,5 +36,14 @@ public class Display extends JFrame {
                 g.drawArc(x, y, width, height, startAngle, arcAngle);
             }
         }
+    }
+
+    public int getDepth() {
+        return depth;
+    }
+
+    public void setDepth(int depth) {
+        this.depth = depth;
+        repaint();
     }
 }

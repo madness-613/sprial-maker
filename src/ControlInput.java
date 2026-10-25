@@ -2,64 +2,49 @@ import javax.swing.*;
 import java.lang.reflect.Array;
 import java.text.Format;
 
-public class ControlInput {
+public class ControlInput extends JPanel{
     private JLabel text;
     private JTextField input;
     private int x, y, w, h;
 
-    private JPanel panel = new JPanel();
-    private GroupLayout layout = new GroupLayout(panel);
+    private GroupLayout layout = new GroupLayout(this);
 
 
     public ControlInput(String title, int x, int y, int width, int height){
-        this.input = new JTextField();
-        this.text = new JLabel(title);
-        this.x = x;
-        this.y = y;
-        this.w = width;
-        this.h = height;
-
-        text.setLabelFor(input);
-        input.setBounds(x + text.getWidth(), y, width, height);
-        panel.setBounds(x, y, width, height);
-
-        setup();
-    }
-    public ControlInput(String title, int x, int y, int width, int height, Format format){
-        this.input = new JFormattedTextField(format);
-        this.text = new JLabel(title);
-        this.x = x;
-        this.y = y;
-        this.w = width;
-        this.h = height;
-
-        text.setLabelFor(input);
-//        input.setBounds(x + text.getWidth(), y, width, height);
-        panel.setBounds(x, y, width, height);
-
-
-        setup();
-    }
-
-    private void setup(){
+        setBounds(x, y, width, height);
         layout.setAutoCreateGaps(true);
-        layout.setAutoCreateContainerGaps(true);
+        setLayout(layout);
 
-        panel.setLayout(layout);
+        this.input = new JTextField("5");
+        this.text = new JLabel(title);
+        this.x = x;
+        this.y = y;
+        this.w = width;
+        this.h = height;
 
-        layout.setHorizontalGroup(layout.createSequentialGroup()
-                .addComponent(text)
-                .addComponent(input)
-        );
+        text.setLabelFor(input);
 
-        layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                .addComponent(text)
-                .addComponent(input)
-        );
+        layout.setHorizontalGroup(layout.createSequentialGroup().addComponent(text).addComponent(input));
+        layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(text).addComponent(input));
     }
 
-    public void add(JFrame frame){
-        frame.add(panel);
+    public ControlInput(String title, int x, int y, int width, int height, Format format){
+        setBounds(x, y, width, height);
+        layout.setAutoCreateGaps(true);
+        setLayout(layout);
+
+        this.input = new JFormattedTextField(format);
+        input.setText("5");
+        this.text = new JLabel(title);
+        this.x = x;
+        this.y = y;
+        this.w = width;
+        this.h = height;
+
+        text.setLabelFor(input);
+
+        layout.setHorizontalGroup(layout.createSequentialGroup().addComponent(text).addComponent(input));
+        layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(text).addComponent(input));
     }
 
     public String getInput(){

@@ -10,12 +10,12 @@ public class ControlInput extends JPanel{
     private GroupLayout layout = new GroupLayout(this);
 
 
-    public ControlInput(String title, int x, int y, int width, int height){
+    public ControlInput(String title, int x, int y, int width, int height, String defaultValue){
         setBounds(x, y, width, height);
         layout.setAutoCreateGaps(true);
         setLayout(layout);
 
-        this.input = new JTextField("5");
+        this.input = new JTextField(defaultValue);
         this.text = new JLabel(title);
         this.x = x;
         this.y = y;
@@ -28,13 +28,13 @@ public class ControlInput extends JPanel{
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(text).addComponent(input));
     }
 
-    public ControlInput(String title, int x, int y, int width, int height, Format format){
+    public ControlInput(String title, int x, int y, int width, int height, Format format, String defaultValue){
         setBounds(x, y, width, height);
         layout.setAutoCreateGaps(true);
         setLayout(layout);
 
         this.input = new JFormattedTextField(format);
-        input.setText("5");
+        input.setText(defaultValue);
         this.text = new JLabel(title);
         this.x = x;
         this.y = y;

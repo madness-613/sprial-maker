@@ -1,28 +1,34 @@
 import javax.swing.*;
-import javax.swing.text.NumberFormatter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.NumberFormat;
 
 public class ControlPanel extends JFrame {
-    private final ControlInput ringsAmountInput, gapSizeInput;
+    private final ControlInput ringsAmountInput, gapSizeInput, spinSpeedInput, centerSizeInput;
+    private final JColorChooser spiralColorInput;
     private final JButton saveButton = new JButton("save");
 
     // The constructor follows
     public ControlPanel() {
         setTitle("Control Panel");
-        setSize(200, 400);
+        setSize(400, 600);
         setLocation(500, 0);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         BoxLayout layout = new BoxLayout(getContentPane(), BoxLayout.Y_AXIS);
 
-        ringsAmountInput = new ControlInput("rings", 5, 0, getWidth()-10, 25, NumberFormat.getIntegerInstance());
-        gapSizeInput = new ControlInput("size", 5, 25, getWidth()-10, 25, NumberFormat.getIntegerInstance());
+        ringsAmountInput = new ControlInput("rings", 5, 0, getWidth()-10, 25, NumberFormat.getNumberInstance(), "5");
+        gapSizeInput = new ControlInput("gap size", 5, 25, getWidth()-10, 25, NumberFormat.getNumberInstance(), "5");
+        spinSpeedInput = new ControlInput("spin speed", 5, 25, getWidth()-10, 25, NumberFormat.getNumberInstance(), "0.05");
+        centerSizeInput = new ControlInput("center size", 5, 25, getWidth()-10, 25, NumberFormat.getNumberInstance(), "0");
 
         add(ringsAmountInput);
         add(gapSizeInput);
+        add(spinSpeedInput);
+        add(centerSizeInput);
+
+        spiralColorInput = new JColorChooser(Color.cyan);
+
+        add(spiralColorInput);
         add(saveButton);
 
         setLayout(layout);
@@ -31,15 +37,27 @@ public class ControlPanel extends JFrame {
     }
 
     // getters
-    public int getRingAmount(){
+    public double getRingAmount(){
         String ringsAmountInputText = ringsAmountInput.getInput();
-        return Integer.parseInt(ringsAmountInputText);
+        return Double.parseDouble(ringsAmountInputText);
     }
-    public int getSpiralSize(){
-        String spiralSizeInputInputText = gapSizeInput.getInput();
-        return Integer.parseInt(spiralSizeInputInputText);
+    public double getGapSize(){
+        String gapSizeInputInputText = gapSizeInput.getInput();
+        return Double.parseDouble(gapSizeInputInputText);
+    }
+    public double getSpinSpeed(){
+        String spinSpeedInputInputText = spinSpeedInput.getInput();
+        return Double.parseDouble(spinSpeedInputInputText);
+    }
+    public double getCenterSize(){
+        String centerSizeInputInputText = centerSizeInput.getInput();
+        return Double.parseDouble(centerSizeInputInputText);
     }
 
+
+    public Color getSpiralColor(){
+        return spiralColorInput.getColor();
+    }
     public JButton getSaveButton() {
         return saveButton;
     }

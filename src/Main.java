@@ -6,14 +6,18 @@ public class Main{
         Display display = new Display();
         ControlPanel controls = new ControlPanel();
 
-        ActionListener settingsSaveListener = new ActionListener() {
+        ActionListener saveSettingsButtonListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println(controls.getSpiralSize());
-                display.setDepth(controls.getSpiralSize());
+                display.setSpiralGapSize(controls.getGapSize());
+                display.setSpiralRingsAmount(controls.getRingAmount());
+                display.setSpiralSpinSpeed(controls.getSpinSpeed());
+                display.setSpiralCenterSize(controls.getCenterSize());
+
+                display.setSpiralColor(controls.getSpiralColor());
             }
         };
 
-        controls.getSaveButton().addActionListener(settingsSaveListener);
+        controls.getSaveButton().addActionListener(saveSettingsButtonListener);
     }
 }

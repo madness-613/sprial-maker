@@ -4,6 +4,4 @@ this is made to use only base java classes and librarys because that sounded fuu
 no ai was used in the making of this, it is instead made entirely with caffeine and spite
 
 # How to run
-download the .jar file
-install a java runtime of v11+
-run the jar file
+download the exe file, run and enjoy

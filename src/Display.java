@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Display extends JFrame {
     private SpiralPanel spiral = new SpiralPanel();
@@ -10,8 +11,17 @@ public class Display extends JFrame {
         setSize(400, 400);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-
         add(spiral);
+    }
+
+    public BufferedImage snapshot(){
+        BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_3BYTE_BGR);
+        Graphics2D buffer = image.createGraphics();
+
+        printAll(buffer);
+        buffer.dispose();
+
+        return image;
     }
 
     public void setSpiralCenterSize(double newValue){

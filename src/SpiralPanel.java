@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.GeneralPath;
+import java.awt.image.BufferedImage;
 
 public class SpiralPanel extends JPanel implements ActionListener {
     private Timer timer;

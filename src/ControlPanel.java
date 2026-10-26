@@ -5,7 +5,7 @@ import java.text.NumberFormat;
 public class ControlPanel extends JFrame {
     private final ControlInput ringsAmountInput, gapSizeInput, spinSpeedInput, centerSizeInput;
     private final JColorChooser spiralColorInput;
-    private final JButton saveButton = new JButton("save");
+    private final JButton saveButton, exportButton;
 
     // The constructor follows
     public ControlPanel() {
@@ -29,7 +29,14 @@ public class ControlPanel extends JFrame {
         spiralColorInput = new JColorChooser(Color.cyan);
 
         add(spiralColorInput);
-        add(saveButton);
+
+        JPanel buttonPanel = new JPanel();
+        GroupLayout buttonLayout = new GroupLayout(buttonPanel);
+        saveButton = new JButton("save");
+        exportButton = new JButton("export");
+        buttonLayout.setHorizontalGroup(buttonLayout.createSequentialGroup().addComponent(saveButton).addComponent(exportButton));
+        buttonLayout.setVerticalGroup(buttonLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(saveButton).addComponent(exportButton));
+        add(buttonPanel);
 
         setLayout(layout);
         setVisible(true);
@@ -54,11 +61,14 @@ public class ControlPanel extends JFrame {
         return Double.parseDouble(centerSizeInputInputText);
     }
 
-
     public Color getSpiralColor(){
         return spiralColorInput.getColor();
     }
+
     public JButton getSaveButton() {
         return saveButton;
+    }
+    public JButton getExportButton(){
+        return exportButton;
     }
 }
